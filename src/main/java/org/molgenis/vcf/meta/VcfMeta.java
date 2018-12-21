@@ -32,7 +32,7 @@ public class VcfMeta {
   private String[] colNames;
 
   public VcfMeta() {
-    this.meta = new HashMap<String, String>();
+    this.meta = new HashMap<>();
   }
 
   public String getFileFormat() {
