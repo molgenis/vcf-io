@@ -67,7 +67,7 @@ public class VcfMeta {
   }
 
   public void addAltMeta(VcfMetaAlt vcfMetaAlt) {
-    if (vcfMetaAlts == null) vcfMetaAlts = new LinkedHashMap<String, VcfMetaAlt>();
+    if (vcfMetaAlts == null) vcfMetaAlts = new LinkedHashMap<>();
     vcfMetaAlts.put(vcfMetaAlt.getId(), vcfMetaAlt);
   }
 
