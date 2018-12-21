@@ -21,7 +21,7 @@ public class VcfReader implements Iterable<VcfRecord>, Closeable {
   private final BlockCompressedInputStream blockCompressedInputStream;
   private VcfMeta vcfMeta;
 
-  public VcfReader(Reader reader) throws IOException {
+  public VcfReader(Reader reader) {
     if (reader == null) throw new IllegalArgumentException("reader is null");
     this.reader =
         reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);
