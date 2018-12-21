@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.UncheckedIOException;
 import java.util.Iterator;
 import net.sf.samtools.util.BlockCompressedInputStream;
 import org.molgenis.vcf.meta.VcfMeta;
@@ -41,7 +42,7 @@ public class VcfReader implements Iterable<VcfRecord>, Closeable {
       try {
         vcfMeta = parseVcfMeta();
       } catch (IOException e) {
-        throw new RuntimeException(e);
+        throw new UncheckedIOException(e);
       }
     }
     VcfRecordReader vcfRecordReader =
