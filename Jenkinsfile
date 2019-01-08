@@ -95,7 +95,7 @@ pipeline {
                             }
                         }
                         container('maven') {
-                            sh "mvn -B -X release:perform -Darguments=\" -B -Dmaven.test.redirectTestOutputToFile=true\""
+                            sh "mvn -q -B release:perform -Darguments=\"-q -B -Dmaven.test.redirectTestOutputToFile=true\""
                         }
                     }
                 }
