@@ -92,6 +92,7 @@
           <artifactId>maven-release-plugin</artifactId>
           <version>${release-maven-plugin.version}</version>
           <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
             <scmCommentPrefix>[ci skip] [maven-release-plugin]${line.separator}</scmCommentPrefix>
           </configuration>
         </plugin>
