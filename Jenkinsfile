@@ -51,7 +51,7 @@ pipeline {
             steps {
                 milestone 1
                 container('maven') {
-                    sh "mvn clean deploy"
+                    sh "mvn clean install"
                 }
             }
             post {
