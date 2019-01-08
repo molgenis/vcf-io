@@ -3,7 +3,7 @@
 
   <groupId>org.molgenis</groupId>
   <artifactId>vcf-io</artifactId>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.3</version>
 
   <parent>
     <groupId>io.spring.platform</groupId>
@@ -22,7 +22,7 @@
       scm:git:https://${env.GITHUB_USER}:${env.GITHUB_TOKEN}@github.com/molgenis/vcf-io.git
     </connection>
     <url>https://github.com/molgenis/vcf-io</url>
-    <tag>HEAD</tag>
+    <tag>vcf-io-1.0.3</tag>
   </scm>
 
   <properties>
