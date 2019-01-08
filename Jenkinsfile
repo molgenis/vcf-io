@@ -123,6 +123,7 @@ pipeline {
                     steps {
                         container('maven') {
                             sh "mvn -q -B clean verify -Dmaven.test.redirectTestOutputToFile=true -DskipITs"
+                            sh "curl -s https://codecov.io/bash | bash -s - -c -F unit -K -C ${GIT_COMMIT}"
                             sh "mvn -q -B sonar:sonar -Dsonar.branch.name=${BRANCH_NAME} -Dsonar.login=${SONAR_TOKEN} -Dsonar.ws.timeout=120"
                         }
                     }
