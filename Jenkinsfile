@@ -19,9 +19,9 @@ pipeline {
                         env.SONAR_TOKEN = sh(script: 'vault read -field=value secret/ops/token/sonar', returnStdout: true)
                         env.GITHUB_USER = sh(script: 'vault read -field=username secret/ops/token/github', returnStdout: true)
                     }
-                    dir('/home/jenkins/.m2') {
-                        stash includes: 'settings.xml', name: 'maven-settings'
-                    }
+                }
+                dir('/home/jenkins/.m2') {
+                    stash includes: 'settings.xml', name: 'maven-settings'
                 }
             }
         }
