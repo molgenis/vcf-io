@@ -31,7 +31,7 @@ pipeline {
             }
             steps {
                 container('maven') {
-                    sh "mvn clean install"
+                    sh "mvn clean install -Dmaven.test.redirectTestOutputToFile=true -T4"
                 }
             }
             post {
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 milestone 1
                 container('maven') {
-                    sh "mvn clean install"
+                    sh "mvn clean install -Dmaven.test.redirectTestOutputToFile=true -T4"
                 }
             }
             post {
@@ -75,7 +75,7 @@ pipeline {
                             unstash 'maven-settings'
                         }
                         container('maven') {
-                            sh "mvn -q -B clean install -Dmaven.test.redirectTestOutputToFile=true -DskipITs -T4"
+                            sh "mvn -q -B clean install -Dmaven.test.redirectTestOutputToFile=true -T4"
                             sh "curl -s https://codecov.io/bash | bash -s - -c -F unit -K -C ${GIT_COMMIT}"
                             sh "mvn -q -B sonar:sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.branch.name=${BRANCH_NAME} -Dsonar.ws.timeout=120"
                         }
@@ -87,7 +87,7 @@ pipeline {
                             input(message: 'Prepare to release?')
                         }
                         container('maven') {
-                            sh "mvn -q -B release:prepare -Dmaven.test.redirectTestOutputToFile=true -Darguments=\"-q -B -DskipITs -Dmaven.test.redirectTestOutputToFile=true\""
+                            sh "mvn -q -B release:prepare -Dmaven.test.redirectTestOutputToFile=true -Darguments=\"-q -B -Dmaven.test.redirectTestOutputToFile=true\""
                         }
                     }
                 }
@@ -122,7 +122,7 @@ pipeline {
                 stage('Build [ feature ]') {
                     steps {
                         container('maven') {
-                            sh "mvn -q -B clean verify -Dmaven.test.redirectTestOutputToFile=true -DskipITs"
+                            sh "mvn -q -B clean verify -Dmaven.test.redirectTestOutputToFile=true"
                             sh "curl -s https://codecov.io/bash | bash -s - -c -F unit -K -C ${GIT_COMMIT}"
                             sh "mvn -q -B sonar:sonar -Dsonar.branch.name=${BRANCH_NAME} -Dsonar.login=${SONAR_TOKEN} -Dsonar.ws.timeout=120"
                         }
