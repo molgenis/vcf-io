@@ -15,9 +15,12 @@ pipeline {
                         sh "mkdir /home/jenkins/.m2"
                         sh(script: 'vault read -field=value secret/ops/jenkins/maven/settings.xml > /home/jenkins/.m2/settings.xml')
                         env.GITHUB_TOKEN = sh(script: 'vault read -field=value secret/ops/token/github', returnStdout: true)
-                        env.CODECOV_TOKEN = sh(script: 'vault read -field=gavin-plus secret/ops/token/codecov', returnStdout: true)
+                        env.CODECOV_TOKEN = sh(script: 'vault read -field=vcf-io secret/ops/token/codecov', returnStdout: true)
                         env.SONAR_TOKEN = sh(script: 'vault read -field=value secret/ops/token/sonar', returnStdout: true)
                         env.GITHUB_USER = sh(script: 'vault read -field=username secret/ops/token/github', returnStdout: true)
+                    }
+                    dir('/home/jenkins/.m2') {
+                        stash includes: 'settings.xml', name: 'maven-settings'
                     }
                 }
             }
