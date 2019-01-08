@@ -26,6 +26,9 @@
   </scm>
 
   <properties>
+    <!-- authentication for release scm plugin -->
+    <project.scm.id>github</project.scm.id>
+
     <commons-lang3.version>3.7</commons-lang3.version>
     <guava.version>25.0-jre</guava.version>
     <picard.version>1.102.0</picard.version>
@@ -90,6 +93,7 @@
           <artifactId>maven-release-plugin</artifactId>
           <version>${release-maven-plugin.version}</version>
           <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
             <scmCommentPrefix>[ci skip] [maven-release-plugin]${line.separator}</scmCommentPrefix>
           </configuration>
         </plugin>
