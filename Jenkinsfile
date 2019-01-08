@@ -20,9 +20,6 @@ pipeline {
                         env.GITHUB_USER = sh(script: 'vault read -field=username secret/ops/token/github', returnStdout: true)
                     }
                 }
-                dir('/home/jenkins/.m2') {
-                    stash includes: 'settings.xml', name: 'maven-settings'
-                }
             }
         }
         stage('Build: [ pull request ]') {
@@ -71,9 +68,6 @@ pipeline {
             stages {
                 stage('Build [ x.x ]') {
                     steps {
-                        dir('/home/jenkins/.m2') {
-                            unstash 'maven-settings'
-                        }
                         container('maven') {
                             sh "mvn -q -B clean install -Dmaven.test.redirectTestOutputToFile=true -T4"
                             sh "curl -s https://codecov.io/bash | bash -s - -c -F unit -K -C ${GIT_COMMIT}"
