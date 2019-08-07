@@ -103,7 +103,7 @@ public class VcfRecordUtils {
       // the entire field is not present
       return res;
     }
-    String[] split = infoStringValue == null ? null : infoStringValue.split(",", -1);
+    String[] split = infoStringValue.split(",", -1);
     if (split != null) {
       if (split.length != getAltsAsStringArray(vcfRecord).length) {
         // TODO JvdV what is happening? loading back RVCF file:
