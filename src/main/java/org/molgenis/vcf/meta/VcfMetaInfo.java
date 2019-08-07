@@ -68,4 +68,8 @@ public class VcfMetaInfo extends VcfMetaEntry {
   public String getVersion() {
     return properties.get(KEY_VERSION);
   }
+
+  public Map<String, String> getProperties() {
+    return properties;
+  }
 }

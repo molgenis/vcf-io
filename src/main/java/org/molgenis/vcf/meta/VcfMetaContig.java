@@ -22,4 +22,8 @@ public class VcfMetaContig extends VcfMetaEntry {
   public Integer getLength() {
     return Integer.valueOf(properties.get(KEY_LENGTH));
   }
+
+  public Map<String, String> getProperties() {
+    return properties;
+  }
 }

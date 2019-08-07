@@ -29,6 +29,10 @@ public class VcfRecord {
     this.tokens = tokens;
   }
 
+  public String[] getTokens() {
+    return tokens;
+  }
+
   public String getChromosome() {
     return tokens[VcfMeta.COL_CHROM_IDX].intern();
   }
@@ -180,6 +184,10 @@ public class VcfRecord {
         };
       }
     };
+  }
+
+  public VcfMeta getVcfMeta() {
+    return vcfMeta;
   }
 
   public void reset(String[] tokens) {

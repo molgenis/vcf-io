@@ -25,6 +25,10 @@ public class VcfSample {
     this.tokens = tokens;
   }
 
+  public String[] getTokens() {
+    return tokens;
+  }
+
   /**
    * @param idx
    * @return data for the sample record at the given position or null if data is set to the missing

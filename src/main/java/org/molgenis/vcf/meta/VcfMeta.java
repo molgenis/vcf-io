@@ -3,7 +3,6 @@ package org.molgenis.vcf.meta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,11 @@ public class VcfMeta {
   private String[] colNames;
 
   public VcfMeta() {
-    this.meta = new HashMap<>();
+    this.meta = new LinkedHashMap<>();
+  }
+
+  public Map<String, String> getMeta() {
+    return meta;
   }
 
   public String getFileFormat() {
@@ -144,6 +147,10 @@ public class VcfMeta {
 
   public Iterable<VcfMetaPedigree> getPedigreeMeta() {
     return vcfMetaPedigrees != null ? vcfMetaPedigrees : Collections.<VcfMetaPedigree>emptyList();
+  }
+
+  public void setVcfMetaSamples(Map<String, VcfMetaSample> vcfMetaSamples) {
+    this.vcfMetaSamples = vcfMetaSamples;
   }
 
   public void addSampleMeta(VcfMetaSample vcfMetaSample) {
