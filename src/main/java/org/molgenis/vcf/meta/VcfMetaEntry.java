@@ -1,5 +1,6 @@
 package org.molgenis.vcf.meta;
 
+import java.util.Collections;
 import java.util.Map;
 
 public abstract class VcfMetaEntry {
@@ -14,6 +15,10 @@ public abstract class VcfMetaEntry {
 
   public String get(String key) {
     return properties.get(key);
+  }
+
+  public Map<String, String> getProperties() {
+    return Collections.unmodifiableMap(properties);
   }
 
   @Override
