@@ -98,14 +98,12 @@ public class VcfRecordUtils {
   // TODO code cleanup
   public static Double[] getAltAlleleOrderedDoubleField(VcfRecord vcfRecord, String fieldName) {
     Double[] res = new Double[getAltsAsStringArray(vcfRecord).length];
-    if (getInfoStringValue(vcfRecord, fieldName) == null) {
+    String infoStringValue = getInfoStringValue(vcfRecord, fieldName);
+    if (infoStringValue == null) {
       // the entire field is not present
       return res;
     }
-    String[] split =
-        getInfoStringValue(vcfRecord, fieldName) == null
-            ? null
-            : getInfoStringValue(vcfRecord, fieldName).split(",", -1);
+    String[] split = infoStringValue == null ? null : infoStringValue.split(",", -1);
     if (split != null) {
       if (split.length != getAltsAsStringArray(vcfRecord).length) {
         // TODO JvdV what is happening? loading back RVCF file:
@@ -117,7 +115,7 @@ public class VcfRecordUtils {
                 + " split length "
                 + split.length
                 + " of string '"
-                + getInfoStringValue(vcfRecord, fieldName)
+                + infoStringValue
                 + "' not equal to alt allele split length "
                 + getAltsAsStringArray(vcfRecord).length
                 + " for record "
