@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.apache.commons.lang3.StringUtils;
 import org.molgenis.genotype.Allele;
 import org.molgenis.vcf.meta.VcfMeta;
@@ -111,6 +112,9 @@ public class VcfRecord {
 
           @Override
           public VcfInfo next() {
+            if (!hasNext()) {
+              throw new NoSuchElementException();
+            }
             String infoToken = infoTokens[nrToken++];
             int idx = infoToken.indexOf('=');
             String key = idx != -1 ? infoToken.substring(0, idx) : infoToken;
@@ -171,6 +175,9 @@ public class VcfRecord {
 
           @Override
           public VcfSample next() {
+            if (!hasNext()) {
+              throw new NoSuchElementException();
+            }
             recycableVcfSample.reset(
                 StringUtils.split(tokens[VcfMeta.COL_FORMAT_IDX + 1 + nrSample], ':'));
             ++nrSample;

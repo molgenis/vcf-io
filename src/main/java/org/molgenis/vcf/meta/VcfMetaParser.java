@@ -66,8 +66,10 @@ public class VcfMetaParser {
     return vcfMeta;
   }
 
+  // squid:S2583 Change this condition so that it does not always evaluate to "false"
+  @SuppressWarnings("squid:S2583")
   private Map<String, String> parseMetaLine(String line) {
-    Map<String, String> properties = new LinkedHashMap<String, String>();
+    Map<String, String> properties = new LinkedHashMap<>();
 
     // header block starts with < and ends with >
     boolean inHeaderBlock = false;
@@ -94,6 +96,7 @@ public class VcfMetaParser {
         }
         // parse quotes
         else if (!inKey && '"' == c) {
+
           if (inQuotes) {
             inQuotes = false;
             properties.put(key, value);
