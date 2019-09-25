@@ -96,7 +96,6 @@ public class VcfMetaParser {
         }
         // parse quotes
         else if (!inKey && '"' == c) {
-
           if (inQuotes) {
             inQuotes = false;
             properties.put(key, value);
