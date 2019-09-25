@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import net.sf.samtools.util.BlockCompressedInputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.molgenis.vcf.meta.VcfMeta;
@@ -51,6 +52,9 @@ public class VcfRecordReader implements Iterable<VcfRecord> {
 
       @Override
       public VcfRecord next() {
+        if (!hasNext()) {
+          throw new NoSuchElementException();
+        }
         recycableVcfRecord.reset(tokens);
         tokens = null;
         return recycableVcfRecord;
